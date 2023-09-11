@@ -24,6 +24,7 @@ import (
 	"github.com/crossplane-contrib/provider-kafka/internal/controller/acl"
 	"github.com/crossplane-contrib/provider-kafka/internal/controller/config"
 	"github.com/crossplane-contrib/provider-kafka/internal/controller/topic"
+	"github.com/crossplane-contrib/provider-kafka/internal/controller/user"
 )
 
 // Setup creates all Template controllers with the supplied logger and adds them to
@@ -33,6 +34,7 @@ func Setup(mgr ctrl.Manager, l logging.Logger) error {
 		config.Setup,
 		topic.Setup,
 		acl.Setup,
+		user.Setup,
 	} {
 		if err := setup(mgr, l); err != nil {
 			return err
