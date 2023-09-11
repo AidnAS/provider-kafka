@@ -18,7 +18,7 @@ crossplane(){
   echo "Installing crossplane.  Did you already install k8s and is it running?"
   kubectl delete namespace crossplane-system
   kubectl create namespace crossplane-system
-  helm repo add crossplane-stable https://charts.crossplane.io/
+  helm repo add crossplane-stable https://charts.crossplane.io/stable
   helm repo update
   helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
 }
@@ -44,6 +44,7 @@ kafka(){
   kubectl create ns kafka-cluster;
   echo "--- Installing kafka-dev via helm"
   helm upgrade --install kafka-dev -n kafka-cluster bitnami/kafka \
+    --version 20.0.5 \
     --set auth.clientProtocol=sasl \
     --set deleteTopicEnable=true \
     --set authorizerClassName="kafka.security.authorizer.AclAuthorizer" \
